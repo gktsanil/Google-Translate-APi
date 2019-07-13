@@ -18,6 +18,14 @@ Extract zip to your computer and open command line in extract folder.
 composer install
 composer serve
 ```
+
+## Docker Installation
+
+Extract zip to your computer and open command line in extract folder.
+```bash
+docker build -t <IMAGE_NAME> .
+docker run -p 8080:80 <IMAGE_NAME>
+```
 ## Usage
 
 Go to your browser and use this.
