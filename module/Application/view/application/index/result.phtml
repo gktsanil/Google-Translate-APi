@@ -1,0 +1,30 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-lg-12">
+            <label for="input">Orijinal Metin</label>
+            <p class="form-control" id="input">
+                <?php echo $result['input'] ?>
+            </p>
+        </div>
+        <div class="col-lg-12">
+            <label for="text">Çevirilmiş Metin</label>
+            <p class="form-control" id="text">
+                <?php 
+                    $org = explode(" ", $result['text']);
+
+                    for ($i=0; $i < count($org); $i++) {
+                        foreach (explode(" ", $data['search']) as $key) {
+                            if (strtolower($org[$i]) == strtolower($key)) {
+                                $org[$i] = '<b>'.$org[$i].'</b>';
+                            }
+                        }
+                    }
+                    echo implode(' ', $org);
+                ?>
+            </p>
+        </div>
+        <div class="col-lg-12">
+            <a href="<?= $this->url('home') ?>" class="btn btn-warning btn-block">Geri Dön</a>
+        </div>
+    </div>
+</div>

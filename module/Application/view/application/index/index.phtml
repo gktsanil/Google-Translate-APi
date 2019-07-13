@@ -1,0 +1,96 @@
+<?php
+    $title = 'Google Translate APi';
+    $this->headTitle($title);
+?>
+<div class="jumbotron">
+    <h3>Kalan Çeviri Hakkınız: <?php echo 3 - $heart; ?></h3>
+    <?php 
+        if ($heart == 3) {
+            echo '<a class="btn btn-danger" href="'.$this->basePath("application/unset").'" >Kullanıcı Değiştir</a>';
+        }
+    ?>
+    <h1><?php //echo $this->escapeHtml($title); ?></h1>
+        <?php
+        $form = $this->form;
+        $form->prepare();
+        echo $this->form()->openTag($form);
+        ?>
+        <div class="row">
+            <div class="col-lg-6">
+                <?php
+                    // Destination Language Select Tag
+                    echo $this->formLabel($form->get('desLang'));
+                    echo $this->formElement($form->get('desLang'));
+                ?>
+            </div>
+            <div class="col-lg-6">
+                <?php
+                    // Search Input Tag
+                    echo $this->formLabel($form->get('search'));
+                    echo $this->formElement($form->get('search'));
+                ?>
+            </div>
+            <div class="col-lg-12">
+                <?php
+                    // Text Textarea Tag
+                    echo $this->formLabel($form->get('source'));
+                    echo $this->formElement($form->get('source'));
+
+                    // Submit Button Tag
+                    echo $this->formElement($form->get('submit'));
+                ?>
+            </div>
+        </div>
+
+        <?php
+            echo $this->form()->closeTag($form);
+        ?>
+        
+
+
+</div>
+
+<script>
+    var search = document.getElementById('search');
+    var source = document.getElementById('source');
+    var originalValue;
+
+    function saveValue()
+    {
+        originalValue = source.value;
+        console.log(originalValue);
+    }
+
+    function getValue()
+    {
+        if (compare(source.value, search.value) && search.value!='') {
+            var words = source.value.split(' ');
+            words.forEach(item => {
+                if (compare(item, search.value)) {
+                    for (let i = 0; i <= item.length - search.value.length; i++) {
+                       // console.log(item.substr(i, search.length));
+                       if ( item.substr(i, search.value.length) == search.value) {
+                            console.log("buldu - " + item.substr(i, search.value.length) + " - " + item);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function compare(s, t)
+    {
+        if (s.includes(t)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+</script>
+
+<!--
+
+    $this->url('post', [action' => 'view', 'id' => $post->getId()])
+-->
